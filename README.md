@@ -11,4 +11,5 @@ Telegram bots for life and leisure
 - [ ] Docker setup
 - [ ] Reminder bot
 - [ ] Heroku deploy
-- [ ] Stoic bot 
+- [ ] Stoic bot
+    - [ ] Façade over [Stoic Quotes API](https://stoicquotesapi.com/docs)
