@@ -1,3 +1,5 @@
+#https://medium.com/@samwelkanda/how-to-initialize-a-django-project-with-poetry-and-docker-ef4997006f2f
+
 FROM python:3.9-slim-buster
 
 ENV \
@@ -14,7 +16,7 @@ ENV \
   POETRY_VIRTUALENVS_CREATE=false \
   POETRY_CACHE_DIR='/var/cache/pypoetry'
 
-# System deps:
+# System deps
 RUN apt-get update \
   && apt-get install --no-install-recommends -y \
     bash \
@@ -24,7 +26,7 @@ RUN apt-get update \
     git \
     libpq-dev \
     wget \
-  # Cleaning cache:
+  # Cleaning cache
   && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* \
   && pip install "poetry==$POETRY_VERSION" && poetry --version
 
@@ -34,11 +36,11 @@ WORKDIR /src/glowing-telegram/
 COPY glowing-telegram/pyproject.toml ./
 COPY glowing-telegram/poetry.lock ./
 
-# Install dependencies:
+# Install dependencies
 RUN poetry install
+
 # copy project
 COPY ./glowing-telegram ./
-
 
 
 CMD poetry run python main.py
